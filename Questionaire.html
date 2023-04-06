@@ -1,29 +1,56 @@
+<!DOCTYPE html>
 <html lang="en-US">
 	<head>
 		<title>Computerized Disease Tracking</title>
 		<meta charset="utf-8">
 		<meta name="application-name" content="Computerized Disease Tracking">
 		<meta name="description" content="Computerized Disease Tracking">
-		<meta name="keywords" content="Computerized Disease Tracking, CDT">
+		<meta name="keywords" content="Computerized Disease Tracking, CDT, Manual Project">
 		<meta name="author" content="Abigail (Gale) Falikson">
 		<meta name="author" content="Daniel Freer">
 		<meta name="author" content="Matthew Rigg">
 		<meta name="author" content="Samara Rodriguez Cruz">
+		<meta name="refresh" content="60">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="color-scheme" content="dark">
 	</head>
 	<body>
-		<!--Question 1-->
-		<p>
-			Select your symptoms:
-		</p>
-		<input type="checkbox" id="Q1A1" name="Q1A1" value="cough">
-		<label for="Q1A1"> Cough</label><br>
-		<input type="checkbox" id="Q1A2" name="Q1A2" value="fever">
-		<label for="Q1A2"> Fever</label><br>
-		<input type="checkbox" id="Q1A3" name="Q1A3" value="taste">
-		<label for="Q1A3"> Loss of Taste</label><br>
-		<input type="checkbox" id="Q1A4" name="Q1A4" value="smell">
-		<label for="Q1A4"> Loss of Smell</label><br>
+		<!--Progress bar-->
+		<label for="progressBar">Questions Answered: </label>
+		<progress id="progressBar", value="0" max="100"> 0% </progress>
+		<label for="progressBar"> 0/3</label>
+		<form>
+			<!--Question 1-->
+			<p>Select your gender</p>
+			<input type="radio" id="Q1A1" name="Q1A1" value="male">
+			<label for="Q1A1"> Male</label>
+			<input type="radio" id="Q1A2" name="Q1A2" value="female">
+			<label for="Q1A2"> Female</label>
+			<input type="radio" id="Q1A3" name="Q1A3" value="other">
+			<label for="Q1A3"> Other/Prefer not to say</label><br>
+
+			<!--Question 1-->
+			<p>Select your age range</p>
+			<input type="radio" id="Q2A1" name="Q2A1" value="0-40">
+			<label for="Q2A1"> Less than 40</label>
+			<input type="radio" id="Q2A2" name="Q2A2" value="40-59">
+			<label for="Q2A2"> Between 40 and 59</label>
+			<input type="radio" id="Q2A3" name="Q2A3" value="60+">
+			<label for="Q2A3"> 60 or older</label><br>
+
+			<!--Question 3-->
+			<p>Select your symptoms:</p>
+			<input type="checkbox" id="Q3A1" name="Q3A1" value="cough">
+			<label for="Q3A1"> Cough</label><br>
+			<input type="checkbox" id="Q3A2" name="Q3A2" value="fever">
+			<label for="Q3A2"> Fever</label><br>
+			<input type="checkbox" id="Q3A3" name="Q3A3" value="taste">
+			<label for="Q3A3"> Loss of taste</label><br>
+			<input type="checkbox" id="Q3A4" name="Q3A4" value="smell">
+			<label for="Q3A4"> Loss of smell</label><br>
+
+			<!--Submit button-->
+			<input type="submit" value="Submit">
+		</form>
 	</body>
 </html>
