@@ -12,10 +12,47 @@
 		<meta name="author" content="Samara Rodriguez Cruz">
 		<meta name="refresh" content="60">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 		<!--Bootstrap-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		
+		<!--Custom sciprts-->
+		<script>
+			/*makes the phone number in the phone number textbox more readable to the user e.g. (123) 456-7890
+			 *this function is called by the phone number input element when it is unfocused by the user
+			 */
+			function correctPhoneNumber() {
+				//get the phone number from the textbox
+				let number = document.getElementById("phone").value;
+
+				//take only numbers 0-9 from the phone number
+				number = number.match(/\d/g).join('');
+
+				//get the length of the number
+				const length = number.length;
+
+				//if there are more than 10 digits, remove the extra
+				if (length > 10) number = number.slice(0, 10);
+
+				//add parenthesis if there are at least 3 numbers
+				if (length > 2) {
+					number = "(" + number.slice(0, 3) + ")" + number.slice(3);
+
+					//add a space if there are at least 4 numbers
+					if (length > 3) {
+						number = number.slice(0, 5) + " " + number.slice(5);
+
+						//add a hyphen if there are at least 7 characters
+						if (length > 6) number = number.slice(0, 9) + "-" + number.slice(9);
+					}
+				}
+
+				//put the corrected phone number into the textbox
+				document.getElementById("phone").value = number;
+			}
+		</script>
 	</head>
 	<body>
 		<!--Heading-->
@@ -23,12 +60,18 @@
 
 		<!--Progress bar-->
 		<label for="progressBar">Questions Answered: </label>
-		<progress id="progressBar", value="0" max="100"> 0% </progress>
+		<progress id="progressBar" value="0" max="100"> 0% </progress>
 		<label for="progressBar"> 0/3</label>
 
 		<!--Questionaire-->
-		<form>
-			<!--Question 1-->
+		<form id="questionaireForm" action="" target="_self" method="post">
+			<!--Name-->
+			<label for="firstName">First name:</label>
+			<input type="text" id="firstName" name="firstName" placeholder="e.g. John" autocomplete="off" required><br>
+			<label for="lastName">LastName</label>
+			<input type="text" id="lastName" name="lastName" placeholder="e.g. Doe" autocomplete="off" required><br>
+
+			<!--Gender-->
 			<p>Select your gender:</p>
 			<input type="radio" id="gender1" name="gender" value="male">
 			<label for="gender1"> Male </label>
@@ -37,7 +80,7 @@
 			<input type="radio" id="gender3" name="gender" value="other">
 			<label for="gender3"> Other/Prefer not to say</label><br>
 
-			<!--Question 1-->
+			<!--Age group-->
 			<p>Select your age group:</p>
 			<input type="radio" id="ageGroup1" name="age" value="0-40">
 			<label for="ageGroup1"> &lt;40 </label>
@@ -46,16 +89,24 @@
 			<input type="radio" id="ageGroup3" name="age" value="60+">
 			<label for="ageGroup3"> 60+</label><br>
 
-			<!--Question 3-->
+			<!--Symptoms-->
 			<p>Select your symptoms:</p>
-			<input type="checkbox" id="symptom1" name="symptoms" value="cough">
-			<label for="symptom1"> Cough</label><br>
-			<input type="checkbox" id="symptom2" name="symptoms" value="fever">
-			<label for="symptom2"> Fever</label><br>
-			<input type="checkbox" id="symptom3" name="symptoms" value="lossOfTaste">
-			<label for="symptom3"> Loss of taste</label><br>
-			<input type="checkbox" id="symptom4" name="symptoms" value="lossOfSmell">
-			<label for="symptom4"> Loss of smell</label><br>
+			<input type="checkbox" id="cough" name="symptoms" value="cough">
+			<label for="cough"> Cough</label><br>
+			<input type="checkbox" id="fever" name="symptoms" value="fever">
+			<label for="fever"> Fever</label><br>
+			<input type="checkbox" id="lossOfTaste" name="symptoms" value="lossOfTaste">
+			<label for="lossOfTaste"> Loss of taste</label><br>
+			<input type="checkbox" id="lossOfSmell" name="symptoms" value="lossOfSmell">
+			<label for="lossOfSmell"> Loss of smell</label><br>
+
+			<!--Phone number-->
+			<label for="phoneNumber">Phone number:</label>
+			<input type="tel" id="phone" name="phone" placeholder="e.g. 1234567890" autocomplete="off" pattern="(\d{3}) \d{3}\-\d{4}" onblur="correctPhoneNumber()">
+
+			<!--Email-->
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="email" placeholder="e.g. abc123@gmail.com" autocomplete="off" pattern="[\w._!#$&'*+\=?`{|}~^.-]+@[\w.-]+\.[a-zA-Z]{2,4}$">
 
 			<!--Submit button-->
 			<br>
