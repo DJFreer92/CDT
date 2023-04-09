@@ -28,28 +28,29 @@
 				let number = document.getElementById("phone").value;
 
 				//take only numbers 0-9 from the phone number
-				number = number.match(/\d/g).join('');
+				number = number.match(/\d/g);
+				
+				//if there are no numbers, empty the textbox and exit the function
+				if (number == null) {
+					document.getElementById("phone").value = "";
+					return;
+				}
+				
+				//combine the numbers
+				number = number.join('');
 
-				//remove the number 0 or 1 if they are the first number
-				if (number[0] == 0 || number[0] == 1) number = number.slice(1);
+				//remove the numbers 0 or 1 if they are the first number
+				while (number[0] < 2) number = number.slice(1);
 
 				//get the length of the number
 				const length = number.length;
 
-				//if there are more than 10 digits, remove the extra
-				if (length > 10) number = number.slice(0, 10);
-
-				//add parentheses if there are at least 3 numbers
+				//add parentheses and a space if there are at least 3 numbers
 				if (length > 2) {
-					number = "(" + number.slice(0, 3) + ")" + number.slice(3);
+					number = "(" + number.slice(0, 3) + ") " + number.slice(3);
 
-					//add a space if there are at least 4 numbers
-					if (length > 3) {
-						number = number.slice(0, 5) + " " + number.slice(5);
-
-						//add a hyphen if there are at least 7 characters
-						if (length > 6) number = number.slice(0, 9) + "-" + number.slice(9);
-					}
+					//add a hyphen if there are at least 7 characters and remove extra numbers
+					if (length > 6) number = number.slice(0, 9) + "-" + number.slice(9, 13);
 				}
 
 				//put the corrected phone number into the textbox
