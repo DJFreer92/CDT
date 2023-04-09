@@ -30,8 +30,8 @@
 				//take only numbers 0-9 from the phone number
 				number = number.match(/\d/g).join('');
 
-				//remove the number 1 if it the first number
-				if (number[0] == 1) number = number.slice(1);
+				//remove the number 0 or 1 if they are the first number
+				if (number[0] == 0 || number[0] == 1) number = number.slice(1);
 
 				//get the length of the number
 				const length = number.length;
@@ -64,7 +64,7 @@
 		<!--Progress bar-->
 		<label for="progressBar">Questions Answered: </label>
 		<progress id="progressBar" value="0" max="100"> 0% </progress>
-		<label for="progressBar"> 0/3</label>
+		<label for="progressBar"> 0/7</label>
 
 		<!--Questionaire-->
 		<form id="questionaireForm" action="" target="_self" method="post">
