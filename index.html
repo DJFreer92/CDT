@@ -30,13 +30,16 @@
 				//take only numbers 0-9 from the phone number
 				number = number.match(/\d/g).join('');
 
+				//remove the number 1 if it the first number
+				if (number[0] == 1) number = number.slice(1);
+
 				//get the length of the number
 				const length = number.length;
 
 				//if there are more than 10 digits, remove the extra
 				if (length > 10) number = number.slice(0, 10);
 
-				//add parenthesis if there are at least 3 numbers
+				//add parentheses if there are at least 3 numbers
 				if (length > 2) {
 					number = "(" + number.slice(0, 3) + ")" + number.slice(3);
 
@@ -67,9 +70,9 @@
 		<form id="questionaireForm" action="" target="_self" method="post">
 			<!--Name-->
 			<label for="firstName">First name:</label>
-			<input type="text" id="firstName" name="firstName" placeholder="e.g. John" autocomplete="off" required><br>
+			<input type="text" id="firstName" name="firstName" placeholder="e.g., John" autocomplete="off" required><br>
 			<label for="lastName">LastName</label>
-			<input type="text" id="lastName" name="lastName" placeholder="e.g. Doe" autocomplete="off" required><br>
+			<input type="text" id="lastName" name="lastName" placeholder="e.g., Doe" autocomplete="off" required><br>
 
 			<!--Gender-->
 			<p>Select your gender:</p>
@@ -102,11 +105,11 @@
 
 			<!--Phone number-->
 			<label for="phoneNumber">Phone number:</label>
-			<input type="tel" id="phone" name="phone" placeholder="e.g. 1234567890" autocomplete="off" pattern="(\d{3}) \d{3}\-\d{4}" onblur="correctPhoneNumber()">
+			<input type="tel" id="phone" name="phone" placeholder="e.g., (123) 456-7890" autocomplete="off" pattern="(\d{3}) \d{3}\-\d{4}" onblur="correctPhoneNumber()"><br>
 
 			<!--Email-->
 			<label for="email">Email:</label>
-			<input type="email" id="email" name="email" placeholder="e.g. abc123@gmail.com" autocomplete="off" pattern="[\w._!#$&'*+\=?`{|}~^.-]+@[\w.-]+\.[a-zA-Z]{2,4}$">
+			<input type="email" id="email" name="email" placeholder="e.g., abc123@gmail.com" autocomplete="off" pattern="[\w._!#$&'*+\=?`{|}~^.-]+@[\w.-]+\.[a-zA-Z]{2,4}$">
 
 			<!--Submit button-->
 			<br>
