@@ -36,21 +36,21 @@
 					return;
 				}
 				
-				//combine the numbers
+				//combine the numbers into a single string
 				number = number.join('');
 
 				//remove the numbers 0 or 1 if they are the first number
-				while (number[0] < 2) number = number.slice(1);
+				while (number.startsWith("0") || number.startsWith("1")) number = number.substring(1);
 
 				//get the length of the number
 				const length = number.length;
 
 				//add parentheses and a space if there are at least 3 numbers
 				if (length > 2) {
-					number = "(" + number.slice(0, 3) + ") " + number.slice(3);
+					number = "(" + number.substring(0, 3) + ") " + number.substring(3);
 
 					//add a hyphen if there are at least 7 characters and remove extra numbers
-					if (length > 6) number = number.slice(0, 9) + "-" + number.slice(9, 13);
+					if (length > 6) number = number.substring(0, 9) + "-" + number.substring(9, 13);
 				}
 
 				//put the corrected phone number into the textbox
