@@ -36,6 +36,7 @@ function correctPhoneNumber() {
 	document.getElementById("phone").value = number;
 }
 
+//pulls the data from the questionaire form
 function getData(form) {
 	const formData = new FormData(form);
 
@@ -44,6 +45,9 @@ function getData(form) {
 	}
 }
 
+/*listens for whether the questionaire form submit button has been pressed, and calls
+ *the getData() function with the form data as an argument
+ */
 document.getElementById("questionaireForm").addEventListener("submit", function (e) {
 	e.preventDefault();
 	getData(e.target);
