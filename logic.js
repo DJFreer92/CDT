@@ -40,6 +40,7 @@ function correctPhoneNumber() {
 function getData(form) {
 	const formData = new FormData(form);
 
+	//traverses the form data
 	for (let pair of formData.entries()) {
 		console.log(pair[0] + ": " + pair[1]);
 	}
@@ -50,5 +51,6 @@ function getData(form) {
  */
 document.getElementById("questionaireForm").addEventListener("submit", function (e) {
 	e.preventDefault();
+	//pulls the data from the form
 	getData(e.target);
 });
