@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 //document.getElementById("genderText").textContent = "TEST";
 
 //waits until the html window finishes loading
@@ -16,6 +17,27 @@ window.onload = function() {
 var roosterChills = 0;
 var exposed = false;
 
+=======
+//Variable for if the user has been in contact with an infected person or not:
+var contactt = 0;
+//Variables for the severity levels for each symptom:
+/*They start at 0 and increase by 1 when the user selects symtoms from that level. 
+All symptoms selected in the same severity level increase your likelyhood of having the disease.*/
+var severity2 = 0; //Chills
+var severity3 = 0; //Cough
+var severity4 = 0; //Fever, Vomiting
+var severity5 = 0; //Shortness of Breath, Fatigue, Loss of Taste, Loss of Smell
+//Variables for the symtom severity groups:
+/*These variables keep track of each symtpom reported from each severity group.
+If all symptoms in the same severity group are selected, the total of that group will be multiplied by the severity level
+of that group, since the all symptoms in a severity group being reported increases your likelihood of having the disease.*/
+var group2 = 0; //Chills
+var group3 = 0; //Cough
+var group4 = 0; //Fever, Vomiting
+var group5 = 0; //Shortness of Breath, Fatigue, Loss of Taste, Loss of Smell
+//Variable for the total symtpoms reported:
+var total = 0;
+>>>>>>> Stashed changes
 /*makes the phone number in the phone number textbox more readable to the user e.g. (123) 456-7890
  *this function is called by the phone number input element when it is unfocused by the user
  */
@@ -56,16 +78,58 @@ function getData(form) {
 
 	//traverses the form data
 	for (let pair of formData.entries()) {
+<<<<<<< Updated upstream
 		checkData(pair);
+=======
+		console.log(pair[0] + ": " + pair[1]);
+		checkAndRunData(pair);
+	}
+	if(severity2 == 1){
+		total = total + (group2 * severity2);
+	}else{
+		total = total + group2;
+	}
+	if(severity3 == 1){
+		total = total + (group3 * severity3);
+	}
+	else{
+		total = total + group3;
+	}
+	if(severity4 == 2){
+		total = total + (group4 * severity4);
+	}
+	else{
+		total = total + group4;
+	}
+	if(severity5 == 4){
+		total = total + (group5 * severity5);
+	}
+	else{
+		total = total + group5;
+	}
+	console.log(total);
+	if(total == 1){
+		document.write("<p>You have no risk of having Rooster Chills.</p>");
+	}
+	if(total > 1 && total < 15){
+		document.write("<p>You have a low risk of having Rooster Chills.</p>");
+	}
+	if(total > 15 && total < 26){
+		document.write("<p>You have a medium risk of having Rooster Chills.</p>");
+	}
+	if(total >= 26){
+		document.write("<p>You have a high risk of having Rooster Chills.</p>");
+
+>>>>>>> Stashed changes
 	}
 }
-
 //checks the data from the form
-function checkData(data) {
+function checkAndRunData(data) {
 	switch (data[0]) {
 		case "firstName": break;
 		case "lastName": break;
 		case "gender": break;
+<<<<<<< Updated upstream
 		case "age": break;
 		case "exposure":
 			exposed = data[1] == "yes";
@@ -86,9 +150,87 @@ function checkData(data) {
 				case "fatigue": break;
 				case "headache": break;
 				case "runnyNose": break;
+=======
+		case "age":
+			if(data[1] == "0-40"){
+				total = total + 1;
+				break;
+			}
+			if(data[1] == "40-59"){
+				total = total + 2;
+				break;
+			}
+			if(data[1] == "60+"){
+				total = total + 3;
+				break;
+			}
+		case "contact":
+			if (data[1] == "yes") {
+				total++;
+				contactt = 1;
+				break;
+			}else{
+				break;
+			}
+		case "symptoms":
+			if (data[1] == "fever") {
+				group4++;
+				severity4++;
+				break;
+			}
+			if (data[1] == "chills") {
+				group2++;
+				severity2++;
+				break;
+			}
+			if (data[1] == "vomiting") {
+				group4++;
+				severity4++;
+				break;
+			}
+			if (data[1] == "cough") {
+				group3++;
+				severity3++;
+				break;
+			}
+
+			if (data[1] == "shortnessOfBreath") {
+				group5++;
+				severity5++;
+				break;
+			} 
+			if (data[1] == "fatigue") {
+				group5++;
+				severity5++;
+				break;
+			}
+			if (data[1] == "lossOfTaste") {
+				group5++;
+				severity5++;
+				break;
+			} 
+			if (data[1] == "lossOfSmell") {
+				group5++;
+				severity5++;
+				break;
+>>>>>>> Stashed changes
 			}
 			break;
 		case "phone": break;
 		case "email": break;
 	}
+<<<<<<< Updated upstream
 }
+=======
+
+}
+
+/*listens for whether the questionaire form submit button has been pressed, and calls
+ *the getData() function with the form data as an argument
+ */
+document.getElementById("questionaireForm").addEventListener("submit", function (e) {
+	e.preventDefault();
+	//pulls the data from the form
+	getData(e.target);
+});
+>>>>>>> Stashed changes
