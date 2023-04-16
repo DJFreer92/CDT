@@ -1,5 +1,5 @@
 //Variable for if the user has been in contact with an infected person or not:
-var contactt = 0;
+var contact = 0;
 //Variables for the severity levels for each symptom:
 /*They start at 0 and increase by 1 when the user selects symtoms from that level. 
 All symptoms selected in the same severity level increase your likelyhood of having the disease.*/
@@ -119,10 +119,10 @@ function checkAndRunData(data) {
 				total = total + 3;
 				break;
 			}
-		case "contact":
+		case "exposure":
 			if (data[1] == "yes") {
 				total++;
-				contactt = 1;
+				contact = 1;
 				break;
 			}else{
 				break;
