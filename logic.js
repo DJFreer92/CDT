@@ -1,23 +1,3 @@
-<<<<<<< Updated upstream
-//document.getElementById("genderText").textContent = "TEST";
-
-//waits until the html window finishes loading
-window.onload = function() {
-	/*listens for whether the questionaire form submit button has been pressed, and calls
-	*the getData() function with the form data as an argument
-	*/
-	document.getElementById("questionaireForm").addEventListener("submit", function (e) {
-		e.preventDefault();
-		//pulls the data from the form
-		getData(e.target);
-	});
-}
-
-//
-var roosterChills = 0;
-var exposed = false;
-
-=======
 //Variable for if the user has been in contact with an infected person or not:
 var contactt = 0;
 //Variables for the severity levels for each symptom:
@@ -37,13 +17,15 @@ var group4 = 0; //Fever, Vomiting
 var group5 = 0; //Shortness of Breath, Fatigue, Loss of Taste, Loss of Smell
 //Variable for the total symtpoms reported:
 var total = 0;
->>>>>>> Stashed changes
 /*makes the phone number in the phone number textbox more readable to the user e.g. (123) 456-7890
  *this function is called by the phone number input element when it is unfocused by the user
  */
 function correctPhoneNumber() {
-	//get the phone number from the textbox, take only numbers 0-9 from the phone number
-	let number = document.getElementById("phone").value.match(/\d/g);
+	//get the phone number from the textbox
+	let number = document.getElementById("phone").value;
+
+	//take only numbers 0-9 from the phone number
+	number = number.match(/\d/g);
 
 	//if there are no numbers, empty the textbox and exit the function
 	if (number == null) {
@@ -78,9 +60,6 @@ function getData(form) {
 
 	//traverses the form data
 	for (let pair of formData.entries()) {
-<<<<<<< Updated upstream
-		checkData(pair);
-=======
 		console.log(pair[0] + ": " + pair[1]);
 		checkAndRunData(pair);
 	}
@@ -119,8 +98,6 @@ function getData(form) {
 	}
 	if(total >= 26){
 		document.write("<p>You have a high risk of having Rooster Chills.</p>");
-
->>>>>>> Stashed changes
 	}
 }
 //checks the data from the form
@@ -129,28 +106,6 @@ function checkAndRunData(data) {
 		case "firstName": break;
 		case "lastName": break;
 		case "gender": break;
-<<<<<<< Updated upstream
-		case "age": break;
-		case "exposure":
-			exposed = data[1] == "yes";
-			break;
-		case "symptoms":
-			switch (data[1]) {
-				case "cough": break;
-				case "fever": break;
-				case "lossOfTaste": break;
-				case "lossOfSmell": break;
-				case "chills": break;
-				case "chestPain": break;
-				case "vomiting": break;
-				case "muscleAche": break;
-				case "shortnessOfBreath": break;
-				case "soreThroat": break;
-				case "diarrhea": break;
-				case "fatigue": break;
-				case "headache": break;
-				case "runnyNose": break;
-=======
 		case "age":
 			if(data[1] == "0-40"){
 				total = total + 1;
@@ -213,15 +168,11 @@ function checkAndRunData(data) {
 				group5++;
 				severity5++;
 				break;
->>>>>>> Stashed changes
 			}
 			break;
 		case "phone": break;
 		case "email": break;
 	}
-<<<<<<< Updated upstream
-}
-=======
 
 }
 
@@ -233,4 +184,3 @@ document.getElementById("questionaireForm").addEventListener("submit", function 
 	//pulls the data from the form
 	getData(e.target);
 });
->>>>>>> Stashed changes
