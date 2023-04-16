@@ -56,14 +56,21 @@ function checkData(data) {
 		case "gender": break;
 		case "age": break;
 		case "symptoms":
-			if (data[1] == "cough") {
-
-			} else if (data[1] == "fever") {
-				
-			} else if (data[1] == "lossOfTaste") {
-				
-			} else if (data[1] == "lossOfSmell") {
-				
+			switch (data[1]) {
+				case "cough": break;
+				case "fever": break;
+				case "lossOfTaste": break;
+				case "lossOfSmell": break;
+				case "chills": break;
+				case "chestPain": break;
+				case "vomiting": break;
+				case "muscleAche": break;
+				case "shortnessOfBreath": break;
+				case "soreThroat": break;
+				case "diarrhea": break;
+				case "fatigue": break;
+				case "headache": break;
+				case "runnyNose": break;
 			}
 			break;
 		case "phone": break;
