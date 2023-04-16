@@ -23,7 +23,7 @@
 	</head>
 	<body>
 		<!--Heading-->
-		<h1>Disease Questionaire</h1>
+		<h1>Disease Questionaire</h1><br>
 
 		<!--Questionaire-->
 		<form id="questionaireForm" action="" target="_self" method="post">
@@ -32,31 +32,40 @@
 			<input type="text" id="firstName" name="firstName" placeholder="e.g., John" autocomplete="off" required><br>
 			<label for="lastName">Last name:</label>
 			<input type="text" id="lastName" name="lastName" placeholder="e.g., Doe" autocomplete="off" required><br>
+			<br>
 
 			<!--Gender-->
 			<p>Select your gender:</p>
 			<input type="radio" id="gender1" name="gender" value="male">
 			<label for="gender1"> Male </label>
+			
 			<input type="radio" id="gender2" name="gender" value="female">
 			<label for="gender2"> Female </label>
+
 			<input type="radio" id="gender3" name="gender" value="other">
 			<label for="gender3"> Other/Prefer not to say</label><br>
+			<br>
 
 			<!--Age group-->
 			<p>Select your age group:</p>
 			<input type="radio" id="ageGroup1" name="age" value="0-40">
 			<label for="ageGroup1"> &lt;40 </label>
+
 			<input type="radio" id="ageGroup2" name="age" value="40-59">
 			<label for="ageGroup2"> 40-59 </label>
+
 			<input type="radio" id="ageGroup3" name="age" value="60+">
 			<label for="ageGroup3"> 60+</label><br>
+			<br>
 
-			<!--Have you been in recent contact with someone that has rooster chills?-->
-			<p>Have you been in recent contact with someone that has rooster chills?</p>
-			<input type="radio" id="beenContact" name="contact" value="yes">
+			<!--Exposure-->
+			<p>Have you been in recent contact with someone who has tested positive for Rooster Chills?</p>
+			<input type="radio" id="exposure1" name="contact" value="yes">
 			<label for="beenContact"> Yes </label>
-			<input type="radio" id="noContact" name="contact" value="no">
-			<label for="noContact"> No </label>
+
+			<input type="radio" id="exposure2" name="contact" value="no">
+			<label for="noContact"> No </label><br>
+			<br>
 
 			<!--Symptoms-->
 			<p>Select your symptoms:</p>
@@ -83,19 +92,20 @@
 
 			<input type="checkbox" id="lossOfSmell" name="symptoms" value="lossOfSmell">
 			<label for="lossOfSmell"> Loss of smell</label><br>
+			<br>
 
 			<!--Phone number-->
 			<label for="phoneNumber">Phone number:</label>
 			<input type="tel" id="phone" name="phone" placeholder="e.g., (123) 456-7890" autocomplete="off" pattern="(\d{3}) \d{3}\-\d{4}" onblur="correctPhoneNumber()"><br>
+			<br>
 
 			<!--Email--> 
 			<label for="email">Email:</label>
-			<input type="email" id="email" name="email" placeholder="e.g., abc123@gmail.com" autocomplete="off" pattern="[\w._!#$&'*+\=?`{|}~^.-]+@[\w.-]+\.[a-zA-Z]{2,4}$">
+			<input type="email" id="email" name="email" placeholder="e.g., abc123@gmail.com" autocomplete="off" pattern="[\w._!#$&'*+\=?`{|}~^.-]+@[\w.-]+\.[a-zA-Z]{2,4}$"><br>
+			<br>
 
 			<!--Submit button-->
-			<br>
 			<input type="submit" value="Submit">
-			<script src = "logic.js"></script>
 		</form>
 	</body>
 </html>
