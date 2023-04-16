@@ -2,6 +2,18 @@
 /*makes the phone number in the phone number textbox more readable to the user e.g. (123) 456-7890
  *this function is called by the phone number input element when it is unfocused by the user
  */
+//Variables for percent that it's the disease
+var coughFigure = 25;
+var feverFigure = 35;
+var lossOfSmellFigure = 50;
+var lossOfTasteFigure = 90;
+//Variables for severity
+var counghSevere = 20;
+var feverSevere = 20;
+var lossOfSmellFigure = 30;
+var lossOfTasteFigure = 30;
+//Varibles for if they have the disease or not
+var RoosterChills = 0;
 function correctPhoneNumber() {
 	//get the phone number from the textbox
 	let number = document.getElementById("phone").value;
@@ -56,13 +68,13 @@ function checkData(data) {
 		case "age": break;
 		case "symptoms":
 			if (data[1] == "cough") {
-
+				
 			} else if (data[1] == "fever") {
-
+				
 			} else if (data[1] == "lossOfTaste") {
-
+				
 			} else if (data[1] == "lossOfSmell") {
-
+				
 			}
 			break;
 		case "phone": break;
