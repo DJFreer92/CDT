@@ -1,14 +1,27 @@
 //document.getElementById("genderText").textContent = "TEST";
+
+//waits until the html window finishes loading
+window.onload = function() {
+	/*listens for whether the questionaire form submit button has been pressed, and calls
+	*the getData() function with the form data as an argument
+	*/
+	document.getElementById("questionaireForm").addEventListener("submit", function (e) {
+		e.preventDefault();
+		//pulls the data from the form
+		getData(e.target);
+	});
+}
+
+//
+var roosterChills = 0;
+var exposed = false;
+
 /*makes the phone number in the phone number textbox more readable to the user e.g. (123) 456-7890
  *this function is called by the phone number input element when it is unfocused by the user
  */
-var RoosterChills = 0;
 function correctPhoneNumber() {
-	//get the phone number from the textbox
-	let number = document.getElementById("phone").value;
-
-	//take only numbers 0-9 from the phone number
-	number = number.match(/\d/g);
+	//get the phone number from the textbox, take only numbers 0-9 from the phone number
+	let number = document.getElementById("phone").value.match(/\d/g);
 
 	//if there are no numbers, empty the textbox and exit the function
 	if (number == null) {
@@ -43,7 +56,6 @@ function getData(form) {
 
 	//traverses the form data
 	for (let pair of formData.entries()) {
-		console.log(pair[0] + ": " + pair[1]);
 		checkData(pair);
 	}
 }
@@ -55,6 +67,9 @@ function checkData(data) {
 		case "lastName": break;
 		case "gender": break;
 		case "age": break;
+		case "exposure":
+			exposed = data[1] == "yes";
+			break;
 		case "symptoms":
 			switch (data[1]) {
 				case "cough": break;
@@ -77,12 +92,3 @@ function checkData(data) {
 		case "email": break;
 	}
 }
-
-/*listens for whether the questionaire form submit button has been pressed, and calls
- *the getData() function with the form data as an argument
- */
-document.getElementById("questionaireForm").addEventListener("submit", function (e) {
-	e.preventDefault();
-	//pulls the data from the form
-	getData(e.target);
-});
