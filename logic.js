@@ -1,31 +1,38 @@
-//Variable for if the user has been in contact with an infected person or not:
-var contact = 0;
-//Variables for the severity levels for each symptom:
-/*They start at 0 and increase by 1 when the user selects symtoms from that level. 
-All symptoms selected in the same severity level increase your likelyhood of having the disease.*/
-var severity2 = 0; //Chills
-var severity3 = 0; //Cough
-var severity4 = 0; //Fever, Vomiting
-var severity5 = 0; //Shortness of Breath, Fatigue, Loss of Taste, Loss of Smell
-//Variables for the symtom severity groups:
-/*These variables keep track of each symtpom reported from each severity group.
-If all symptoms in the same severity group are selected, the total of that group will be multiplied by the severity level
-of that group, since the all symptoms in a severity group being reported increases your likelihood of having the disease.*/
-var group2 = 0; //Chills
-var group3 = 0; //Cough
-var group4 = 0; //Fever, Vomiting
-var group5 = 0; //Shortness of Breath, Fatigue, Loss of Taste, Loss of Smell
-//Variable for the total symtpoms reported:
+//variable for if the user has been in contact with an infected person or not:
+var exposed = false;
+
+/*severity groups for each symptom
+ *starts at 0 and increases by 1 when the user selects symptoms from that severity level 
+ *symptoms selected in the same severity level increase your likelyhood of having the disease
+ *0: (Group 1) Loss of taste, loss of smell, and fever
+ *1: (Group 2) Shortness of breath, chest pain, and cough
+ *2: (Group 3) Fatigue, muscle ache, and headache
+ *3: (Group 4) Vomiting and diarrhea
+ *4: (Group 5) Runny nose and sore throat
+ */
+var groups = [0, 0, 0, 0, 0];
+
+//total symtpoms reported:
 var total = 0;
+
+//waits until the html window finishes loading
+window.onload = function() {
+	/*listens for whether the questionaire form submit button has been pressed, and calls
+	*the getData() function with the form data as an argument
+	*/
+	document.getElementById("questionaireForm").addEventListener("submit", function (e) {
+		e.preventDefault();
+		//pulls the data from the form
+		getData(e.target);
+	});
+}
+
 /*makes the phone number in the phone number textbox more readable to the user e.g. (123) 456-7890
  *this function is called by the phone number input element when it is unfocused by the user
  */
 function correctPhoneNumber() {
-	//get the phone number from the textbox
-	let number = document.getElementById("phone").value;
-
-	//take only numbers 0-9 from the phone number
-	number = number.match(/\d/g);
+	//get the phone number from the textbox, take only numbers 0-9 from the phone number
+	let number = document.getElementById("phone").value.match(/\d/g);
 
 	//if there are no numbers, empty the textbox and exit the function
 	if (number == null) {
@@ -60,127 +67,85 @@ function getData(form) {
 
 	//traverses the form data
 	for (let pair of formData.entries()) {
-		console.log(pair[0] + ": " + pair[1]);
-		checkAndRunData(pair);
+		console.log(pair[0] + ": " + pair[1]);  //remove after testing complete
+		analyzeData(pair);
 	}
-	if(severity2 == 1){
-		total = total + (group2 * severity2);
-	}else{
-		total = total + group2;
-	}
-	if(severity3 == 1){
-		total = total + (group3 * severity3);
-	}
-	else{
-		total = total + group3;
-	}
-	if(severity4 == 2){
-		total = total + (group4 * severity4);
-	}
-	else{
-		total = total + group4;
-	}
-	if(severity5 == 4){
-		total = total + (group5 * severity5);
-	}
-	else{
-		total = total + group5;
-	}
-	console.log(total);
-	if(total == 1){
-		document.write("<p>You have no risk of having Rooster Chills.</p>");
-	}
-	if(total > 1 && total < 15){
-		document.write("<p>You have a low risk of having Rooster Chills.</p>");
-	}
-	if(total > 15 && total < 26){
-		document.write("<p>You have a medium risk of having Rooster Chills.</p>");
-	}
-	if(total >= 26){
-		document.write("<p>You have a high risk of having Rooster Chills.</p>");
-	}
-}
-//checks the data from the form
-function checkAndRunData(data) {
-	switch (data[0]) {
-		case "firstName": break;
-		case "lastName": break;
-		case "gender": break;
-		case "age":
-			if(data[1] == "0-40"){
-				total = total + 1;
-				break;
-			}
-			if(data[1] == "40-59"){
-				total = total + 2;
-				break;
-			}
-			if(data[1] == "60+"){
-				total = total + 3;
-				break;
-			}
-		case "exposure":
-			if (data[1] == "yes") {
-				total++;
-				contact = 1;
-				break;
-			}else{
-				break;
-			}
-		case "symptoms":
-			if (data[1] == "fever") {
-				group4++;
-				severity4++;
-				break;
-			}
-			if (data[1] == "chills") {
-				group2++;
-				severity2++;
-				break;
-			}
-			if (data[1] == "vomiting") {
-				group4++;
-				severity4++;
-				break;
-			}
-			if (data[1] == "cough") {
-				group3++;
-				severity3++;
-				break;
-			}
+	
+	//calculate total odds
+	if (groups[0] == 3) total += groups[0] ** 2;
+	else total += groups[0];
 
-			if (data[1] == "shortnessOfBreath") {
-				group5++;
-				severity5++;
-				break;
-			} 
-			if (data[1] == "fatigue") {
-				group5++;
-				severity5++;
-				break;
-			}
-			if (data[1] == "lossOfTaste") {
-				group5++;
-				severity5++;
-				break;
-			} 
-			if (data[1] == "lossOfSmell") {
-				group5++;
-				severity5++;
-				break;
+	if (groups[1] == 3) total += groups[1] ** 2;
+	else total += groups[1];
+
+	if (groups[2] == 3) total += groups[2] ** 2;
+	else total += groups[2];
+
+	if (groups[3] == 2) total += groups[3] ** 2;
+	else total += groups[3];
+
+	if (groups[4] == 2) total += groups[4] ** 2;
+	else total += groups[4];
+
+	console.log(total);  //remove after testing complete
+
+	//displays the user's risk of having rc
+	if (total > 21) document.write("<p>You have a high risk of having Rooster Chills.</p>");
+	else if (total > 11) document.write("<p>You have a medium risk of having Rooster Chills.</p>");
+	else document.write("<p>You have a low risk of having Rooster Chills.</p>");
+}
+
+//checks the data from the form
+function analyzeData(data) {
+	switch (data[0]) {
+		case "firstName": break;		//First Name
+		case "lastName": break;			//Last Name
+		case "gender": break;			//Gender
+		case "age":						//Age
+			switch (data[1]) {
+				case "0-40":				//Below 40
+					total++;
+					break;
+				case "40-59":				//Between 40 and 59
+					total += 2;
+					break;
+				case "60+":					//Above 60
+					total += 3;
+					break;
 			}
 			break;
-		case "phone": break;
-		case "email": break;
+		case "exposure":				//Exposure
+			exposed = data[1] == "yes";
+			if (exposed) total++;
+			break;
+		case "symptoms":				//Symptoms
+			switch (data[1]) {
+				case "lossOfTaste":			//Loss of taste
+				case "lossOfSmell":			//Loss of smell
+				case "fever":				//Fever
+					groups[0]++;
+					break;
+				case "shortnessOfBreath":	//Shortness of breath
+				case "chestPain":			//Chest pain
+				case "cough":				//Cough
+					groups[1]++;
+					break;
+				case "fatigue":				//Fatigue
+				case "muscleAche":			//Muscle Ache
+				case "headache":			//Headache
+					groups[2]++;
+					break;
+				case "vomiting":			//Vomiting
+				case "diarrhea":			//Diarrhea
+					groups[3]++;
+					break;
+				case "runnyNose":			//Runny nose
+				case "soreThroat":			//Sore throat
+					groups[4]++;
+					break;
+			}
+			break;
+		case "phone": break;			//Phone Number
+		case "email": break;			//Email
 	}
-
 }
-
-/*listens for whether the questionaire form submit button has been pressed, and calls
- *the getData() function with the form data as an argument
- */
-document.getElementById("questionaireForm").addEventListener("submit", function (e) {
-	e.preventDefault();
-	//pulls the data from the form
-	getData(e.target);
-});
