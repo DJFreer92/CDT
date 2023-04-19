@@ -70,98 +70,10 @@ function getData(form) {
 		console.log(pair[0] + ": " + pair[1]);  //remove after testing complete
 		analyzeData(pair);
 	}
-<<<<<<< Updated upstream
 	
 	//calculate total odds
 	if (groups[0] == 3) total += groups[0] ** 2;
 	else total += groups[0];
-=======
-	if(severity2 == 1){
-		total = total + (group2 * severity2);
-	}else{
-		total = total + group2;
-	}
-	if(severity3 == 1){
-		total = total + (group3 * severity3);
-	}
-	else{
-		total = total + group3;
-	}
-	if(severity4 == 2){
-		total = total + (group4 * severity4);
-	}
-	else{
-		total = total + group4;
-	}
-	if(severity5 == 4){
-		total = total + (group5 * severity5);
-	}
-	else{
-		total = total + group5;
-	}
-	console.log(total);
-	if(total == 1){
-		document.write("<p>You have no risk of having Rooster Chills.</p>");
-	}
-	if(total > 1 && total < 15){
-		document.write("<p>You may have a low risk case of Rooster Chills.</p>");
-	}
-	if(total > 15 && total < 26){
-		document.write("<p>You may have a medium risk case of Rooster Chills.</p>");
-	}
-	if(total >= 26){
-		document.write("<p>You may have a high risk case of Rooster Chills.</p>");
-	}
-}
-//checks the data from the form
-function checkAndRunData(data) {
-	switch (data[0]) {
-		case "firstName": break;
-		case "lastName": break;
-		case "gender": break;
-		case "age":
-			if(data[1] == "0-40"){
-				total = total + 1;
-				break;
-			}
-			if(data[1] == "40-59"){
-				total = total + 2;
-				break;
-			}
-			if(data[1] == "60+"){
-				total = total + 3;
-				break;
-			}
-		case "exposure":
-			if (data[1] == "yes") {
-				total++;
-				contact = 1;
-				break;
-			}else{
-				break;
-			}
-		case "symptoms":
-			if (data[1] == "fever") {
-				group4++;
-				severity4++;
-				break;
-			}
-			if (data[1] == "chills") {
-				group2++;
-				severity2++;
-				break;
-			}
-			if (data[1] == "vomiting") {
-				group4++;
-				severity4++;
-				break;
-			}
-			if (data[1] == "cough") {
-				group3++;
-				severity3++;
-				break;
-			}
->>>>>>> Stashed changes
 
 	if (groups[1] == 3) total += groups[1] ** 2;
 	else total += groups[1];
