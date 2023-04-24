@@ -90,9 +90,25 @@ function getData(form) {
 	console.log(total);  //remove after testing complete
 
 	//displays the user's risk of having rc
-	if (total > 21) document.write("<p>You have a high risk of having Rooster Chills.</p>");
-	else if (total > 11) document.write("<p>You have a medium risk of having Rooster Chills.</p>");
-	else document.write("<p>You have a low risk of having Rooster Chills.</p>");
+	if (total > 21) {
+		document.write("<p>You have a <strong>HIGH</strong> risk of having Rooster Chills.\n</p>");
+		document.write("<p><strong>What does this mean?</strong></p>");
+		document.write("<p>You have many of the symptoms and risk factors associated with Rooster Chills.</p>");
+		document.write("<p><strong>What should I do?</strong></p>");
+		document.write("<ul><li>Get tested for Rooster Chills</li><li>Self-quarantine until you test negative for Rooster Chills</li><li>Notify anyone that you have been in close contact with in the last week that you may have Rooster Chills</li><li>Wear a mask around others and practice social distancing</li><li>Sanitize surfaces you come into contact with to prevent the spread of the disease</li><li>Contact your doctor for further guidance</li></ul>");
+	} else if (total > 11) {
+		document.write("<p>You have a <strong>MEDIUM</strong> risk of having Rooster Chills.\n</p>");
+		document.write("<p><strong>What does this mean?</strong></p>");
+		document.write("<p>You have several of the symptoms and risk factors associated with Rooster Chills.</p>");
+		document.write("<p><strong>What should I do?</strong></p>");
+		document.write("<ul><li>Contact your doctor</li><li>Get tested for Rooster Chills</li><li>Self-quarantine until you test negative for Rooster Chills</li><li>Notify anyone that you have been in close contact with in the last week that you may have Rooster Chills</li><li>Wear a mask around others and practice social distancing</li><li>Sanitize surfaces you come into contact with to prevent the spread of the disease</li></ul>");
+	} else {
+		document.write("<p>You have a <strong>LOW</strong> risk of having Rooster Chills.\n</p>");
+		document.write("<p><strong>What does this mean?</strong></p>");
+		document.write("<p>You have little to no risk of having Rooster Chills based off your symptoms, however, you could be asymptomatic and should get tested for Rooster Chills if you belive you have been exposed to the disease.</p>");
+		document.write("<p><strong>What should I do?</strong></p>");
+		document.write("<ul><li>Wear a mask around others and practice social distancing</li><li>Sanitize surfaces you come into contact with to prevent the spread of the disease</li></ul>");
+	}
 }
 
 //checks the data from the form
